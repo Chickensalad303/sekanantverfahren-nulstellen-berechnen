@@ -19,4 +19,4 @@ for p in range(howLong):
     l.append(iterationsvorschrift)
     l.pop(0)
     p = p+1
-    print("folgenglied", p, "( Xn+",p,") =", iterationsvorschrift)
+    print("folgenglied", p, "( Xn+",p,") =", iterationsvorschrift) 
