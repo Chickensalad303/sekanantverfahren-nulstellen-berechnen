@@ -18,6 +18,7 @@
 .header {
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .break_row {

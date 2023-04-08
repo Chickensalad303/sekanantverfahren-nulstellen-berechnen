@@ -3,7 +3,7 @@
   var x_minus_one
   var x_n
 
-  var output
+  var parsedValue
 
     var inputformula = (e) =>{
       value = e.target.value
@@ -19,12 +19,13 @@
     var calculate = () => {
       if (value != ""){
         if (value.includes("^")){
-          var parsedValue = value.replaceAll("^", "**")
-          console.log(parsedValue)
+          parsedValue = value.replaceAll("^", "**")
+
         }
-        else{
-          console.log(value)
+        if(value.includes("x")){
+          parsedValue = value.replaceAll("x", "i")
         }
+        console.log(parsedValue)
 
       }
     }
@@ -35,7 +36,8 @@
 <main>
   <h1>hello there<br>bobo</h1>
   <div class="header">
-    <p>Note: for x to the power of y use: x^y</p>
+    <p>Note: for x to the power of y use: x^y <br>
+    use x as the variable</p>
   </div>
 
   <div class="inputform">
