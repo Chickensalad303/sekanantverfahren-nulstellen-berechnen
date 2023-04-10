@@ -10,12 +10,16 @@ for val in iterations:
 until = int("50")
 
 def parsed_Xminus(formula):
-    a = formula.replace("i", iterations[0])
-    return eval(a, {__builtins__: None}, {}) #edit.. this wworks
+    formula_x_minusone = formula.replace("i", iterations[0])
+    return eval(formula_x_minusone, {__builtins__: None}, {}) #edit.. this wworks
 
 #figure out how to turn string into mathematical expression
 #simply create another function for iterations[1]
-print(parsed_Xminus(asdg))
+
+def parsed_Xn(formula):
+    formula_x_n = formula.replace("i", iterations[1])
+    return eval(formula_x_n, {__builtins__: None}, {})
+
 
 def test(howLong, Xminusone, Xn):
     iterations.append(Xminusone)
