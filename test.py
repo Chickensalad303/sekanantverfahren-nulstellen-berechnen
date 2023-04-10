@@ -11,7 +11,7 @@ until = int("50")
 
 def parsed_Xminus(formula):
     a = formula.replace("i", iterations[0])
-    return eval(a) #edit.. this wworks
+    return eval(a, {__builtins__: None}, {}) #edit.. this wworks
 
 #figure out how to turn string into mathematical expression
 #simply create another function for iterations[1]
