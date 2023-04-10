@@ -18,13 +18,9 @@ import websockets
 #             iterationsvorschrift = 
 
 async def handler(ws):
-    while True:
-        try:
-            message = await ws.recv()
-            
-        except websockets.ConnectionClosedOK:
-            break
+    async for message in ws:
         print(message)
+
 
 
 async def startServer():

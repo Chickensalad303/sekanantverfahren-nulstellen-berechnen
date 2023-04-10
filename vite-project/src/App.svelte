@@ -1,40 +1,53 @@
 <script>
+
+  import { send_calc } from "./lib/client.js"
   //user input stored in these 
   var value = ""
-  var x_minus_one
-  var x_n
-  var folgengl
+  var x_minus_one = ""
+  var x_n = ""
+  var folgengl = ""
+  
+  const ws = new WebSocket("ws://localhost:8001/")
+
 
   var folgengliede = (e) =>{
-    folgengl = e.target.value
-    }
-    var inputformula = (e) =>{
-      value = e.target.value
-    }
-    var minusOne = (e) => {
-      x_minus_one = e.target.value
-    }
-    var n = (e) => {
-      x_n = e.target.value
-    }
+  folgengl = e.target.value
+  }
+  var inputformula = (e) =>{
+    value = e.target.value
+  }
+  var minusOne = (e) => {
+    x_minus_one = e.target.value
+  }
+  var n = (e) => {
+    x_n = e.target.value
+  }
     
     
   var parsedValue
+
     var calculate = () => {
       value = value.toLowerCase()
       if (value != ""){
-        if (value.includes("^")){
+        if (value.includes("^") || value.includes("x")){
           parsedValue = value.replaceAll("^", "**")
+          parsedValue = parsedValue.replaceAll("x", "i")
 
-        }
-        if(value.includes("x")){
-          parsedValue = value.replaceAll("x", "i")
         }
         console.log(parsedValue)
 
+      }else{
+        console.log("its empty")
+        return
       }
+      
+      send_calc(ws, x_minus_one, x_n, parsedValue, folgengl)
+      
+
     }
 
+
+    
 
 </script>
 
