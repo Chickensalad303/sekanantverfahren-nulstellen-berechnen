@@ -1,6 +1,6 @@
 import asyncio
 import websockets
-import calculator
+
 
 
 # asdg = "1/6 *i **3 - 1/2 * i **2 - 1/3"
