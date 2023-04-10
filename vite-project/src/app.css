@@ -21,6 +21,7 @@
   text-align: center;
 }
 
+
 .break_row {
   flex-basis: 100%;
   width: 0;
@@ -37,6 +38,7 @@ input {
   border: none;
   border-radius: 5px;
   padding: 0.5em;
+  width: 20vw;
 }
 
 .calculateButton {

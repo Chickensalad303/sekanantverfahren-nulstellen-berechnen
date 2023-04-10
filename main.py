@@ -1,4 +1,10 @@
+import json
+
 l = []
+
+export = {}
+
+
 try:
     howLong = int(input("bis welches folgenglied?: "))
 except ValueError:
@@ -21,8 +27,14 @@ for p in range(howLong):
         print("ein präziseres Folgenglied ist nicht zu errechnen. Die Nulstelle ist:", iterationsvorschrift)
         break
     l.append(iterationsvorschrift)
+    
     l.pop(0)
     p = p+1
     print("folgenglied", p, "( Xn+",p,") =", iterationsvorschrift) 
+
+    print(func(l[0]))
+    export.setdefault(p, iterationsvorschrift)
+response = json.dumps(export)
+
 
 

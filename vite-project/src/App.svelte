@@ -1,10 +1,13 @@
 <script>
+  //user input stored in these 
   var value = ""
   var x_minus_one
   var x_n
+  var folgengl
 
-  var parsedValue
-
+  var folgengliede = (e) =>{
+    folgengl = e.target.value
+    }
     var inputformula = (e) =>{
       value = e.target.value
     }
@@ -14,9 +17,11 @@
     var n = (e) => {
       x_n = e.target.value
     }
-
-
+    
+    
+  var parsedValue
     var calculate = () => {
+      value = value.toLowerCase()
       if (value != ""){
         if (value.includes("^")){
           parsedValue = value.replaceAll("^", "**")
@@ -34,23 +39,32 @@
 </script>
 
 <main>
-  <h1>hello there<br>bobo</h1>
+
   <div class="header">
     <p>Note: for x to the power of y use: x^y <br>
     use x as the variable</p>
+    
   </div>
+
+
 
   <div class="inputform">
     <div>
-      <h1>X-1:</h1>
+      <h1>anzahl folgenglieder</h1>
+      <input type="text" id="folgen" on:input={folgengliede}>
+    </div>
+  </div>
+  <div class="inputform">
+    <div>
+      <h1>X-1</h1>
       <input type="text" id="x_minus" on:input={minusOne}>
     </div>
     <div>
-      <h1>Xn:</h1>
+      <h1>Xn</h1>
       <input type="text" id="x_minus" on:input={n}>
     </div>
     <div>
-      <h1>formula:</h1>
+      <h1>formula</h1>
       <input type="text" id="formula" on:input={inputformula}>
     </div>
   </div>
