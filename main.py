@@ -31,7 +31,7 @@ def func(i): ##this param gets accessed by eval/parse_expr statement
     return parse_expr(formula, {"i":i}, {}) # apparently eval() isn't safe. tho this is an alternative but i have no idea if this one is safe
     #return eval("1/6 *i **3 - 1/2 * i **2 - 1/3", {__builtins__:None}, {"i":i})
 
-
+ 
 def calculate():
     howLong = int(recv["duration"])
 
