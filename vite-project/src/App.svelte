@@ -13,16 +13,17 @@
   function reconnect() {
     ws = new WebSocket("ws://localhost:8001/")
     var timeout = setTimeout(() => {
-      reconnect()
+      reconnect()    
+      wsopen(ws, reconnect())
+
     }, 5000)
-    
+    return timeout
   }
 
   ws.addEventListener("close", () => {
     console.log("reconnecting")
     reconnect()
     console.log("connected")
-    wsopen()
   })
   
 
