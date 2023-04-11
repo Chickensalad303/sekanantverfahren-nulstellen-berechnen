@@ -1,6 +1,6 @@
 <script>
 
-  import { send_calc, wserror, wsclosed, wsopen, recieve_calc, start} from "./lib/client.js"
+  import { send_calc, wserror, wsclosed, wsopen, recieve_calc, removeElements} from "./lib/client.js"
   //user input stored in these 
   var value = ""
   var x_minus_one = ""
@@ -8,14 +8,21 @@
   var folgengl = ""
   
   var ws = new WebSocket("ws://localhost:8001/")
-
+  //init EventListeners
+  wserror(ws)
+    // wsclosed(ws)
+    // wsopen(ws)
+  recieve_calc(ws)
 
   function reconnect() {
     ws = new WebSocket("ws://localhost:8001/")
     setTimeout(() => {
-      console.log("open")
+      //idk why. Just dont change it
         if (wsopen(ws) == true){
           ws = new WebSocket("ws://localhost:8001/")
+          console.log("test")
+          //for some reason have to do this because it stops listening for messages
+          recieve_calc(ws)
           return
         }
       reconnect()
@@ -24,25 +31,11 @@
   }
 
   ws.addEventListener("close", () => {
-    console.log("reconnecting")
+  
     reconnect()
-    console.log("connected")
   })
   
 
-
-  // ws.onopen = function () {
-  //   console.log("websocket open")
-  // }
-  
-  // ws.onclose = function() {
-  //   console.log("websocket server is closed")
-  // }
-
-  // ws.addEventListener("message", (data) => {
-  //   console.log(data.data)
-  //   console.log("sad")
-  // })
   
 
   var folgengliede = (e) =>{
@@ -62,29 +55,27 @@
   var parsedValue
 
     var calculate = () => {
+      removeElements()
       value = value.toLowerCase()
-      if (value != ""){
+      if (value != "" && x_minus_one != "" && x_n != "" && folgengl != ""){
         if (value.includes("^") || value.includes("x")){
           parsedValue = value.replaceAll("^", "**")
           parsedValue = parsedValue.replaceAll("x", "i")
 
         }
-        console.log(parsedValue)
-
+        // console.log(parsedValue)
+        
+        send_calc(ws, x_minus_one, x_n, parsedValue, folgengl)
       }else{
         console.log("its empty")
         return
       }
-      send_calc(ws, x_minus_one, x_n, parsedValue, folgengl)
       
 
     }
 
 
-    wserror(ws)
-    // wsclosed(ws)
-    // wsopen(ws)
-    recieve_calc(ws)
+
 
     //need to create a div with class grid_item and, 3* <p> inside. all inside grid_box div
 </script>

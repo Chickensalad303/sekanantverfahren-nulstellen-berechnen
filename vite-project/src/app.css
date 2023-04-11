@@ -5,6 +5,12 @@
   color-scheme: dark light;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  /* https://stackoverflow.com/a/69673225 YAY -> https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-gutter */
+  scrollbar-gutter: stable both-edges;
+  /* explanation of both-edges: https://bram.us/2021/07/23/prevent-unwanted-layout-shifts-caused-by-scrollbars-with-the-scrollbar-gutter-css-property/#both-edges 
+    basically it makes it x-symmetrical with the window borders, instead of using the ouside of 
+    scrollbar border/edge to determine the viewports edge. Makes it better for overlay scrollbar (transparent scrollbar) without making big difference on browsers/websites that use classic scrollbars
+  */
 
 }
 
