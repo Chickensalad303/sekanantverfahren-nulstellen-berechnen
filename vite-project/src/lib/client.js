@@ -21,12 +21,12 @@ export function wserror(ws){
     })
 
 }
-export function wsopen(ws, timeout){
+export function wsopen(ws){
     ws.addEventListener("open", () => {
         console.log("Websocket is open")
-        clearTimeout(timeout)
-        
+
     })
+    return true
 }
 export function wsclosed(ws){
     ws.addEventListener("close", () => {

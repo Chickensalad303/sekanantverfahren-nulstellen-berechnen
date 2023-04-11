@@ -12,12 +12,15 @@
 
   function reconnect() {
     ws = new WebSocket("ws://localhost:8001/")
-    var timeout = setTimeout(() => {
-      reconnect()    
-      wsopen(ws, reconnect())
-
+    setTimeout(() => {
+      console.log("open")
+        if (wsopen(ws) == true){
+          ws = new WebSocket("ws://localhost:8001/")
+          return
+        }
+      reconnect()
     }, 5000)
-    return timeout
+    
   }
 
   ws.addEventListener("close", () => {
