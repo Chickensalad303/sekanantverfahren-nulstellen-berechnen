@@ -31,14 +31,24 @@
   display: flex;
   justify-content: space-evenly;
   text-align: center;  
+
 }
 
 input {
   /* box-sizing: border-box; */
-  border: none;
+  border-style: none;
   border-radius: 5px;
   padding: 0.5em;
   width: 20vw;
+  transition-duration: 0.1s;
+  transition-timing-function: eas-in;
+}
+input:hover{
+  background-color: rgb(143, 143, 143);
+}
+input:active{
+  background-color: #5a646e;
+  border-radius: 10px;
 }
 
 .calculateButton {
@@ -49,21 +59,23 @@ input {
 
 
 .grid_box{
-
+  display: table;
   font-weight: 500;
-  margin-left: 20vw;
-  margin-right: 20vw;
-  /* text-align: left */
+  margin: auto;
+  
 }
 
 .grid_item{
   display: flex;
   gap: 5vw;
-  justify-content: center;
-  
 
 }
 
+.user_messages {
+  text-align: center;
+  font-weight: 500;
+
+}
 
 
 /* a {

@@ -1,14 +1,31 @@
 <script>
 
-  import { send_calc, wserror, wsclosed, wsopen, recieve_calc } from "./lib/client.js"
+  import { send_calc, wserror, wsclosed, wsopen, recieve_calc, start} from "./lib/client.js"
   //user input stored in these 
   var value = ""
   var x_minus_one = ""
   var x_n = ""
   var folgengl = ""
-
-  const ws = new WebSocket("ws://localhost:8001/")
   
+  var ws = new WebSocket("ws://localhost:8001/")
+
+
+  function reconnect() {
+    ws = new WebSocket("ws://localhost:8001/")
+    var timeout = setTimeout(() => {
+      reconnect()
+    }, 5000)
+    
+  }
+
+  ws.addEventListener("close", () => {
+    console.log("reconnecting")
+    reconnect()
+    console.log("connected")
+    wsopen()
+  })
+  
+
 
   // ws.onopen = function () {
   //   console.log("websocket open")
@@ -54,7 +71,6 @@
         console.log("its empty")
         return
       }
-      
       send_calc(ws, x_minus_one, x_n, parsedValue, folgengl)
       
 
@@ -62,8 +78,8 @@
 
 
     wserror(ws)
-    wsclosed(ws)
-    wsopen(ws)
+    // wsclosed(ws)
+    // wsopen(ws)
     recieve_calc(ws)
 
     //need to create a div with class grid_item and, 3* <p> inside. all inside grid_box div
@@ -106,6 +122,9 @@
 
 
   <div class="grid_box" id="grid_box">
+
+  </div>
+  <div class="user_messages" id="messages">
 
   </div>
 

@@ -8,14 +8,17 @@ results = []
 
 l = []
 
-export = {}
-
-recv = {
-    "XminusOne": "1",
-    "Xn": "2",
-    "formula": "1/6 *i **3 - 1/2 * i **2 - 1/3",
-    "duration": "50",
+export = {
+    "error": 0,
 }
+
+# recv = {
+#     "XminusOne": "1",
+#     "Xn": "2",
+#     "formula": "1/6 *i **3 - 1/2 * i **2 - 1/3",
+#     "duration": "50",
+# }
+
 
 
 
@@ -29,6 +32,7 @@ recv = {
 # Xn = float(input("enter the second number Xn:"))
 # l.append(Xnminusone)
 # l.append(Xn)
+
 
 
 # good writeup on eval():  https://www.programiz.com/python-programming/methods/built-in/eval
@@ -55,7 +59,12 @@ def calculate(Xnminusone, Xn, formula, howLong):
             iterationsvorschrift = l[1] - (   (l[1] - l[0]) / (func(l[1], formula) - func(l[0], formula)) * (func(l[1], formula))   )
         except ZeroDivisionError:
             print("ein präziseres Folgenglied ist nicht zu errechnen. Die Nulstelle ist:", iterationsvorschrift)
+            export["error"] = 2
+            export["message"]  ="ein präziseres Folgenglied ist nicht zu errechnen. Die Nulstelle ist:"
+            export["errType"] = "ZeroDivisionError"
+            export["current_value"] = iterationsvorschrift
             break
+            
         l.append(iterationsvorschrift)
         
         l.pop(0)
@@ -64,6 +73,8 @@ def calculate(Xnminusone, Xn, formula, howLong):
         print("folgenglied", p, "( Xn+",p,") =", iterationsvorschrift) 
 
         results.append(iterationsvorschrift)
+    
+    results.pop(len(results) - 1)
     export["result"] = results
 
     
