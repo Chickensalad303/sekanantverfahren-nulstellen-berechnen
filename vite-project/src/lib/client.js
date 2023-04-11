@@ -68,7 +68,7 @@ function callZeroDivisonError(final_result, div_to_go_into){
     var msg = document.createTextNode(`Ein präziseres Folgenglied ist nicht zu errechnen. Die Nulstelle ist: ${final_result}`)
     msg_paragraph.appendChild(msg)
     msg_paragraph.setAttribute("id", "user_message")
-    div_to_go_into.appendChild(msg_paragraph)
+    div_to_go_into.appendChild(msg_paragraph)   
     document.getElementById("messages").appendChild(div_to_go_into)
             
 }
@@ -110,9 +110,12 @@ export function recieve_calc(ws){
             document.getElementById("grid_box").appendChild(insert)
             
         }
-
+        console.log("error:", event.error)
+        // if (event.error == 0){
+        //     console.log("idk")
+        // }
         if (event.error == 2){
-            // console.log(event.current_value.toString())
+            console.log(event.current_value.toString())
             callZeroDivisonError(event.current_value.toString(), insert)
             return
             

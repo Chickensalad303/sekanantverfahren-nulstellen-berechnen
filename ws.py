@@ -28,6 +28,7 @@ async def handler(ws):
         Xnminusone = float(recieved["XminusOne"])
         Xn = float(recieved["Xn"])
         duration = int(recieved["duration"])
+        
         await ws.send(main.calculate(Xnminusone, Xn, formula, duration))
         
 

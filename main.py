@@ -57,6 +57,7 @@ def calculate(Xnminusone, Xn, formula, howLong):
         # iterationsvorschrift = Xn - (   (Xn - Xnminusone) / (func(Xn) - func(Xnminusone)) * (func(Xn))   )
         try:
             iterationsvorschrift = l[1] - (   (l[1] - l[0]) / (func(l[1], formula) - func(l[0], formula)) * (func(l[1], formula))   )
+            export["error"] = 0
         except ZeroDivisionError:
             print("ein präziseres Folgenglied ist nicht zu errechnen. Die Nulstelle ist:", iterationsvorschrift)
             export["error"] = 2
@@ -70,11 +71,11 @@ def calculate(Xnminusone, Xn, formula, howLong):
         l.pop(0)
         p = p+1
         
-        print("folgenglied", p, "( Xn+",p,") =", iterationsvorschrift) 
+        #print("folgenglied", p, "( Xn+",p,") =", iterationsvorschrift) 
 
         results.append(iterationsvorschrift)
     
-    results.pop(len(results) - 1)
+    #results.pop(len(results) - 1)
     export["result"] = results
 
     
