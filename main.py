@@ -1,5 +1,11 @@
 import json
 from sympy.parsing.sympy_parser import parse_expr
+
+
+
+results = []
+
+
 l = []
 
 export = {}
@@ -10,7 +16,7 @@ recv = {
     "formula": "1/6 *i **3 - 1/2 * i **2 - 1/3",
     "duration": "50",
 }
-formula = recv["formula"]
+
 
 
 # try:
@@ -26,17 +32,17 @@ formula = recv["formula"]
 
 
 # good writeup on eval():  https://www.programiz.com/python-programming/methods/built-in/eval
-def func(i): ##this param gets accessed by eval/parse_expr statement    
+def func(i, formula): ##this param gets accessed by eval/parse_expr statement    
     #https://docs.sympy.org/latest/modules/parsing.html
     return parse_expr(formula, {"i":i}, {}) # apparently eval() isn't safe. tho this is an alternative but i have no idea if this one is safe
     #return eval("1/6 *i **3 - 1/2 * i **2 - 1/3", {__builtins__:None}, {"i":i})
 
  
-def calculate():
-    howLong = int(recv["duration"])
+def calculate(Xnminusone, Xn, formula, howLong):
+    # howLong = int(recv["duration"])
 
-    Xnminusone = float(recv["XminusOne"])
-    Xn = float(recv["Xn"])
+    # Xnminusone = float(recv["XminusOne"])
+    # Xn = float(recv["Xn"])
     l.append(Xnminusone)
     l.append(Xn)
 
@@ -44,7 +50,7 @@ def calculate():
 
         # iterationsvorschrift = Xn - (   (Xn - Xnminusone) / (func(Xn) - func(Xnminusone)) * (func(Xn))   )
         try:
-            iterationsvorschrift = l[1] - (   (l[1] - l[0]) / (func(l[1]) - func(l[0])) * (func(l[1]))   )
+            iterationsvorschrift = l[1] - (   (l[1] - l[0]) / (func(l[1], formula) - func(l[0], formula)) * (func(l[1], formula))   )
         except ZeroDivisionError:
             print("ein präziseres Folgenglied ist nicht zu errechnen. Die Nulstelle ist:", iterationsvorschrift)
             break
@@ -55,9 +61,10 @@ def calculate():
         
         print("folgenglied", p, "( Xn+",p,") =", iterationsvorschrift) 
 
-
-        export.setdefault(p, iterationsvorschrift)
+        results.append(iterationsvorschrift)
+    export["result"] = results
     response = json.dumps(export)
+    return response
 
 
 

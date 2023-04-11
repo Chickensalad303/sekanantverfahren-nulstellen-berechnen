@@ -48,6 +48,20 @@ input {
 }
 
 
+.grid_box{
+  
+  font-weight: 500;
+  margin-left: 20vw;
+  margin-right: 20vw;
+}
+
+.grid_item{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+}
+
 /* a {
   font-weight: 500;
   color: #646cff;

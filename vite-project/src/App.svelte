@@ -1,14 +1,28 @@
 <script>
 
-  import { send_calc } from "./lib/client.js"
+  import { send_calc, wserror, wsclosed, wsopen, recieve_calc } from "./lib/client.js"
   //user input stored in these 
   var value = ""
   var x_minus_one = ""
   var x_n = ""
   var folgengl = ""
-  
-  const ws = new WebSocket("ws://localhost:8001/")
 
+  const ws = new WebSocket("ws://localhost:8001/")
+  
+
+  // ws.onopen = function () {
+  //   console.log("websocket open")
+  // }
+  
+  // ws.onclose = function() {
+  //   console.log("websocket server is closed")
+  // }
+
+  // ws.addEventListener("message", (data) => {
+  //   console.log(data.data)
+  //   console.log("sad")
+  // })
+  
 
   var folgengliede = (e) =>{
   folgengl = e.target.value
@@ -47,8 +61,12 @@
     }
 
 
-    
+    wserror(ws)
+    wsclosed(ws)
+    wsopen(ws)
+    recieve_calc(ws)
 
+    //need to create a div with class grid_item and, 3* <p> inside. all inside grid_box div
 </script>
 
 <main>
@@ -85,6 +103,20 @@
   
   <div class="calculateButton"><input type="button" value="calculate" on:click={calculate}></div>
 
+
+
+  <div class="grid_box">
+    <div class="grid_item">
+      <p>1</p>
+      <p> = </p>
+      <p>12312</p>
+    </div>
+    <div class="grid_item">
+      <p>1</p>
+      <p> = </p>
+      <p>12312</p>
+    </div>
+  </div>
 
 
 </main>
