@@ -49,18 +49,22 @@ input {
 
 
 .grid_box{
-  
+
   font-weight: 500;
   margin-left: 20vw;
   margin-right: 20vw;
+  /* text-align: left */
 }
 
 .grid_item{
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
+  gap: 5vw;
+  justify-content: center;
+  
 
 }
+
+
 
 /* a {
   font-weight: 500;

@@ -43,6 +43,8 @@ def calculate(Xnminusone, Xn, formula, howLong):
 
     # Xnminusone = float(recv["XminusOne"])
     # Xn = float(recv["Xn"])
+    results.clear()
+    l.clear()
     l.append(Xnminusone)
     l.append(Xn)
 
@@ -63,6 +65,8 @@ def calculate(Xnminusone, Xn, formula, howLong):
 
         results.append(iterationsvorschrift)
     export["result"] = results
+
+    
     response = json.dumps(export)
     return response
 

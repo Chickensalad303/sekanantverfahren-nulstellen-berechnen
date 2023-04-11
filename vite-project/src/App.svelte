@@ -105,17 +105,8 @@
 
 
 
-  <div class="grid_box">
-    <div class="grid_item">
-      <p>1</p>
-      <p> = </p>
-      <p>12312</p>
-    </div>
-    <div class="grid_item">
-      <p>1</p>
-      <p> = </p>
-      <p>12312</p>
-    </div>
+  <div class="grid_box" id="grid_box">
+
   </div>
 
 
