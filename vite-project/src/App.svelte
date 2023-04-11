@@ -55,16 +55,16 @@
   var parsedValue
 
     var calculate = () => {
-      removeElements()
       value = value.toLowerCase()
       if (value != "" && x_minus_one != "" && x_n != "" && folgengl != ""){
         if (value.includes("^") || value.includes("x")){
           parsedValue = value.replaceAll("^", "**")
           parsedValue = parsedValue.replaceAll("x", "i")
-
+          
         }
         // console.log(parsedValue)
         
+        removeElements()
         send_calc(ws, x_minus_one, x_n, parsedValue, folgengl)
       }else{
         console.log("its empty")
