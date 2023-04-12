@@ -7,7 +7,7 @@
   var x_n = ""
   var folgengl = ""
   
-  var ws = new WebSocket("ws://localhost:8001/")
+  var ws = new WebSocket("ws://localhost:80/")
   //init EventListeners
   wserror(ws)
     // wsclosed(ws)
@@ -15,11 +15,11 @@
   recieve_calc(ws)
 
   function reconnect() {
-    ws = new WebSocket("ws://localhost:8001/")
+    ws = new WebSocket("ws://localhost:80/")
     setTimeout(() => {
       //idk why. Just dont change it
         if (wsopen(ws) == true){
-          ws = new WebSocket("ws://localhost:8001/")
+          ws = new WebSocket("ws://localhost:80/")
           console.log("test")
           //for some reason have to do this because it stops listening for messages
           recieve_calc(ws)
