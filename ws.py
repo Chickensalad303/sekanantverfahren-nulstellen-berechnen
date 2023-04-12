@@ -36,8 +36,7 @@ async def handler(ws):
 
 
 async def startServer():
-    async with websockets.serve(handler, "", 8080):# inits server on port 8001. Everything recieved goes into the handler func
-        print(websockets.local_adress)
+    async with websockets.serve(handler, "", 8080): # inits server on port 8001. Everything recieved goes into the handler func
         await asyncio.Future() # makes it run forever, cuz server needs to be running, not stopping
 
 
