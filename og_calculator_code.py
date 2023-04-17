@@ -35,8 +35,6 @@ for p in range(howLong):
     print("folgenglied", p, "( Xn+",p,") =", iterationsvorschrift) 
 
 
-    export.setdefault(p, iterationsvorschrift)
-response = json.dumps(export)
 
 
 
