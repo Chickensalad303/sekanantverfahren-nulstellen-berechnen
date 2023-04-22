@@ -39,8 +39,8 @@ export function wsclosed(ws){
 export function loadinElement(){
     var loading_paragraph = document.createElement("p")
     var loading_msg = document.createTextNode("Loading...")
-    loading_paragraph.appendChild(loading_msg)
     loading_paragraph.setAttribute("id", "loadingText")
+    loading_paragraph.appendChild(loading_msg)
     document.getElementById("loading").appendChild(loading_paragraph)
 
 }
