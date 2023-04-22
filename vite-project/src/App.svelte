@@ -35,12 +35,9 @@
     
   }
 
-  ws.addEventListener("close", () => {
-    if (ws.readyState != ws.OPEN){
-      reconnect()
+  // ws.addEventListener("close", () => {
 
-    }
-  })
+  // })
   
 
 
@@ -63,6 +60,11 @@
   var parsedValue
 
     var calculate = () => {
+
+      if (ws.readyState != ws.OPEN){
+      reconnect()
+
+    }
       value = value.toLowerCase()
       if (value != "" && x_minus_one != "" && x_n != "" && folgengl != ""){
         if (value.includes("^") || value.includes("x")){
