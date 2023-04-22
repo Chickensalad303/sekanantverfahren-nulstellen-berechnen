@@ -36,7 +36,7 @@
   }
 
   ws.addEventListener("close", () => {
-    if (ws.readyState === 3){
+    if (ws.readyState != ws.OPEN){
       reconnect()
 
     }
