@@ -36,7 +36,19 @@ export function wsclosed(ws){
 
 
 
+export function loadinElement(){
+    var loading_paragraph = document.createElement("p")
+    var loading_msg = document.createTextNode("Loading...")
+    loading_paragraph.appendChild(loading_msg)
+    loading_paragraph.setAttribute("id", "loadingText")
+    document.getElementById("loading").appendChild(loading_paragraph)
 
+}
+
+export function deleteLoading(){
+    var deleteElement = document.getElementById("loadingText")
+    deleteElement.remove()
+}
 
 
 

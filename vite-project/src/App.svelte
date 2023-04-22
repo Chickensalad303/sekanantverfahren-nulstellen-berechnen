@@ -1,8 +1,5 @@
 <script>
-  import { comment } from "svelte/internal";
-
-
-  import { send_calc, wserror, wsclosed, wsopen, recieve_calc, removeElements} from "./lib/client.js"
+  import { send_calc, wserror, wsclosed, wsopen, recieve_calc, removeElements, loadinElement, deleteLoading} from "./lib/client.js"
   //user input stored in these 
   var value = ""
   var x_minus_one = ""
@@ -43,11 +40,11 @@
 
 
   function connecting(){
-
-    let flag
     if (ws.readyState === ws.CONNECTING){
+      loadinElement()
       window.setTimeout(connecting, 500)
     }
+    deleteLoading()
     
   }
 
@@ -140,6 +137,10 @@
 
   </div>
   <div class="user_messages" id="messages">
+
+  </div>
+
+  <div id="loading">
 
   </div>
 
