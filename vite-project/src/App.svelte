@@ -1,4 +1,6 @@
 <script>
+  import { comment } from "svelte/internal";
+
 
   import { send_calc, wserror, wsclosed, wsopen, recieve_calc, removeElements} from "./lib/client.js"
   //user input stored in these 
@@ -18,13 +20,12 @@
   recieve_calc(ws)
 
   function reconnect() {
-    ws.close()
-    ws = new WebSocket("ws://192.168.178.40:8001")
     setTimeout(() => {
       //idk why. Just dont change it
         if (wsopen(ws) == true){
           ws = new WebSocket("ws://192.168.178.40:8001")
           console.log("test")
+
           //for some reason have to do this because it stops listening for messages
           recieve_calc(ws)
           return
@@ -41,7 +42,14 @@
   
 
 
-  
+  function connecting(){
+
+    let flag
+    if (ws.readyState === ws.CONNECTING){
+      window.setTimeout(connecting, 500)
+    }
+    
+  }
 
   var folgengliede = (e) =>{
   folgengl = e.target.value
@@ -65,6 +73,8 @@
       reconnect()
 
     }
+    connecting()
+
       value = value.toLowerCase()
       if (value != "" && x_minus_one != "" && x_n != "" && folgengl != ""){
         if (value.includes("^") || value.includes("x")){
