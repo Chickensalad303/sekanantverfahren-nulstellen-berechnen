@@ -30,22 +30,16 @@
           return
         }
 
-        else if (ws.readyState === 3){
-          ws = new WebSocket("ws://192.168.178.40:8001")
-          console.log("test")
-          //for some reason have to do this because it stops listening for messages
-          recieve_calc(ws)
-          return
-
-        }
       reconnect()
     }, 5000)
     
   }
 
   ws.addEventListener("close", () => {
-  
-    reconnect()
+    if (ws.readyState === 3){
+      reconnect()
+
+    }
   })
   
 
